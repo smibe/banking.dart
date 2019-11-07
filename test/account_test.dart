@@ -27,6 +27,13 @@ void main() {
     var statements = List<String>();
     account.printStatements((s) => statements.add(s));
     expect(["Date\tAmount\tBalance"], statements);
-
+  });
+  
+  test ('print deposit and withdrawal', (){
+    account.deposit(1000);
+    account.withdraw(500);
+    var statements = List<String>();
+    account.printStatements((s) => statements.add(s));
+    expect(statements, ["Date\tAmount\tBalance", "date\t1000\t1000", "date\t-500\t500"]);
   });
 }
