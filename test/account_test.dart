@@ -4,9 +4,10 @@ import 'package:banking/account.dart';
 
 void main() {
   var account = Account();
+  var _now = DateTime.now();
 
   setUp((){
-    account = Account();
+    account = Account.forTesting(() => _now);
   });
 
   test('initial account has balance == 0', () {
@@ -30,10 +31,12 @@ void main() {
   });
   
   test ('print deposit and withdrawal', (){
+    _now = DateTime(2019, 11, 1);
     account.deposit(1000);
+    _now = DateTime(2019, 11, 6);
     account.withdraw(500);
     var statements = List<String>();
     account.printStatements((s) => statements.add(s));
-    expect(statements, ["Date\tAmount\tBalance", "date\t1000\t1000", "date\t-500\t500"]);
+    expect(statements, ["Date\tAmount\tBalance", "1.11.2019\t1000\t1000", "6.11.2019\t-500\t500"]);
   });
 }
