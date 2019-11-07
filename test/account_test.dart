@@ -22,4 +22,11 @@ void main() {
     account.withdraw(500);
     expect(500, account.balance);
   });
+
+  test ('print the header', (){
+    var statements = List<String>();
+    account.printStatements((s) => statements.add(s));
+    expect(["Date\tAmount\tBalance"], statements);
+
+  });
 }

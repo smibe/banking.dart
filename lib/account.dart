@@ -5,4 +5,8 @@ class Account {
 
   void deposit(int amount) => balance += amount;
   void withdraw(int amount) => balance -= amount;
+
+  void printStatements(void Function(String) output) {
+    output("Date\tAmount\tBalance");
+  }
 }
